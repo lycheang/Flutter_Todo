@@ -27,8 +27,8 @@ class HomeScreen extends StatelessWidget {
   AppBar _buildAppBar() {
     return AppBar(
       title: Text("កម្មវីធីខ្មែរ", style: TextStyle(fontFamily: "FREE Hand")),
-      backgroundColor: const Color.fromARGB(255, 198, 13, 226),
-      foregroundColor: Colors.black,
+      // backgroundColor: const Color.fromARGB(255, 198, 13, 226),
+      // foregroundColor: Colors.black,
       // flexibleSpace: Image.network(pic4, fit: BoxFit.cover),
     );
   }
@@ -91,9 +91,9 @@ class HomeScreen extends StatelessWidget {
     return Center(
       child: Image.network(
         pic4,
-        color:Colors.blue,
-        colorBlendMode: BlendMode.colorBurn,
-        fit: BoxFit.cover,
+        // color:Colors.blue,
+        // colorBlendMode: BlendMode.colorBurn,
+        // fit: BoxFit.cover,
       )
     );
   }

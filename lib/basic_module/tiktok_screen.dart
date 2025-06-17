@@ -7,13 +7,13 @@ class TiktokScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       // appBar:AppBar(
       //   title:Text("tiktok_screen"),
 
       // ),
       body: _buildBody(),
-      bottomNavigationBar: _buildAppBar(),
+      // bottomNavigationBar: _buildAppBar(),
     );
   }
 

@@ -1,7 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/basic_module/Theme_logic.dart';
 import 'package:flutter_application_1/basic_module/fb_screen.dart';
+import 'package:flutter_application_1/basic_module/home_screen.dart';
 import 'package:flutter_application_1/basic_module/login_screen.dart';
 import 'package:flutter_application_1/basic_module/tiktok_screen.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -51,8 +55,8 @@ class _MainScreenState extends State<MainScreen> {
         });
       }
     },
-    selectedItemColor: Colors.pink,
-    unselectedItemColor: Colors.grey,
+    // selectedItemColor: Colors.pink,
+    // unselectedItemColor: Colors.grey,
     items:[
       BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
       BottomNavigationBarItem(icon: Icon(Icons.shopping_bag), label: "Shop"),
@@ -63,8 +67,10 @@ class _MainScreenState extends State<MainScreen> {
   }
    Widget _buildDrawer(){
     final logo="https://cdn-images.dzcdn.net/images/artist/7fcd4a0752edfaca824888ced63a5ac4/1900x1900-000000-80-0-0.jpg";
+
+    bool dark=context.watch<ThemeLogic>().dark;
     return Drawer(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       child: ListView(
         children: [
           DrawerHeader(child: Image.network(logo)),
@@ -72,15 +78,19 @@ class _MainScreenState extends State<MainScreen> {
             leading:Icon(Icons.home),
             title: Text("Home"),
             onTap: (){
+              // context.read<ThemeLogic>().changetoLight();
               Navigator.of(context).pop();
             },
+            // trailing: dark==false?Icon(Icons.check_circle):null,
           ),
           ListTile(
             leading:Icon(Icons.settings),
-            title: Text("Settings"),
+            title: Text("Setting"),
             onTap: (){
+              // context.read<ThemeLogic>().changeToDark();
               Navigator.of(context).pop();
             },
+            // trailing: dark==true?Icon(Icons.check_circle):null,
           ),
           ListTile(
             leading:Icon(Icons.call),
@@ -90,6 +100,16 @@ class _MainScreenState extends State<MainScreen> {
             },
           ),
           Divider(),
+          ListTile(
+            leading: Icon(CupertinoIcons.moon_fill),
+            title: Text("Night Mode"),
+            trailing: Switch(
+              value: dark,
+              onChanged: (value){
+                context.read<ThemeLogic>().setDark(value);
+              },
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Image.network("https://www.nme.com/wp-content/uploads/2023/12/big-bang-daesung-comeback-solo.jpg"),
@@ -98,5 +118,4 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
    }
-   
 }

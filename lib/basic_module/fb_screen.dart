@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/basic_module/detail_screeen.dart';
 import 'photo_constant.dart';
 class FbScreen extends StatelessWidget {
   const FbScreen({super.key});
@@ -6,6 +8,7 @@ class FbScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.amber,
       appBar: _buildAppBar(),
       body: _buildBody(),
     );
@@ -13,10 +16,10 @@ class FbScreen extends StatelessWidget {
   
   AppBar _buildAppBar() {
     return AppBar(
-      centerTitle: true,
+      // centerTitle: true,
       title: Text("Movie App"),
-      backgroundColor: Colors.blue,
-      foregroundColor: Colors.white,
+      // backgroundColor: Colors.blue,
+      // foregroundColor: Colors.white,
     );
   }
   Widget _buildBody(){
@@ -29,7 +32,8 @@ class FbScreen extends StatelessWidget {
           _buildActorListView(),
           _buildImageListView(),
           _buildCircleActorListView(),
-          _buildImageListView()
+          _buildImageListView(),
+          _buildTrendingMoviesListView()
         ],
       );
   }
@@ -43,7 +47,17 @@ class FbScreen extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           final item = actorList[index];
-          return Padding(
+          return InkWell(
+            onTap: (){
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => DetailScreen(item),
+                  // fullscreenDialog: true,
+                ),
+              );
+
+            },
+            child: Padding(
             padding: EdgeInsets.only(top: pad, bottom: pad, left: pad),
             child: SizedBox(
               width: 180,
@@ -52,13 +66,12 @@ class FbScreen extends StatelessWidget {
                 child: Image.network(item, fit: BoxFit.cover),
               ),
             ),
+            ),
           );
         },
       ),
     );
   }
-
-  
   Widget _buildImageListView() {
   final double pad = 10;
 
@@ -68,7 +81,17 @@ class FbScreen extends StatelessWidget {
     itemCount: imageList.length,
     itemBuilder: (context, index) {
       final item = imageList[index];
-      return Padding(
+      return InkWell(
+        onTap: (){
+          Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => DetailScreen(item),
+                  fullscreenDialog: true,
+                ),
+              );
+
+        },
+        child:Padding(
         padding: EdgeInsets.fromLTRB(pad, 0, pad, pad),
         child: SizedBox(
           height: 300,
@@ -89,6 +112,7 @@ class FbScreen extends StatelessWidget {
             ),
           ),
         ),
+        ),
       );
     },
   );
@@ -104,7 +128,17 @@ Widget _buildCircleActorListView(){
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
         final item = actorList[index];
-        return Padding(
+        return InkWell(
+          onTap: (){
+            Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => DetailScreen(item),
+                  // fullscreenDialog: true,
+                ),
+              );
+
+          },
+          child:Padding(
           padding: EdgeInsets.only(top: pad, bottom: pad, left: pad),
           child: SizedBox(
             width: size,
@@ -112,11 +146,26 @@ Widget _buildCircleActorListView(){
               child: CircleAvatar(backgroundImage: NetworkImage(item),)
             ),
           ),
+          ),
         );
       },
     ),
   );
 }
+  Widget _buildTrendingMoviesListView() {
+    return Container(
+      height: 200,
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      color: Colors.orangeAccent,
+      child: const Center(
+        child: Text(
+          'Trending Movies',
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
+      ),
+    );
+  }
+
 }
 
   
