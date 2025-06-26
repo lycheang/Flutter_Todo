@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/multitask_module/api_service.dart';
 
 class MultitaskScreen extends StatefulWidget {
   const MultitaskScreen({super.key});
@@ -35,22 +36,33 @@ class _MultitaskScreenState extends State<MultitaskScreen> {
   }
   Widget _buildBody() {
     return Center(
-      child: FutureBuilder<String>(
-        future: _readFakeData(),
+      child: FutureBuilder<List<Map<String, dynamic>>>(
+        future: ApiService.read(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return Text(
-              snapshot.data ?? "No Data",
-              style: TextStyle(fontSize: 24),
-            );
+            return _buildListView(snapshot.data ?? []);
           } 
           else{
             return CircularProgressIndicator();
           }
-        
         },
       )
       
+    );
+  }
+  Widget _buildListView(List<Map<String, dynamic>> items) {
+    return ListView.builder(
+      physics: BouncingScrollPhysics(),
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        final item = items[index];
+        return Card(
+          child: ListTile(
+            title: Text(item['title']),
+            subtitle: Image.network(item['image']),
+          ),
+        );
+      },
     );
   }
 }
