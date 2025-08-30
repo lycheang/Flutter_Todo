@@ -24,7 +24,7 @@ A simple Todo List web application built with [Laravel](https://laravel.com/).
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/laravel-todolist.git
+   git clone https://github.com/lycheang/laravel-todolist.git
    cd laravel-todolist
    ```
 
@@ -40,14 +40,14 @@ A simple Todo List web application built with [Laravel](https://laravel.com/).
    ```
    Edit `.env` with your database credentials.
 
-4. **Generate application key**
-   ```bash
-   php artisan key:generate
-   ```
-
-5. **Run migrations**
+4. **Run migrations**
    ```bash
    php artisan migrate
+   ```
+
+5. **Build frontend assets**
+   ```bash
+   npm run dev
    ```
 
 6. **Start development server**
@@ -75,17 +75,18 @@ A simple Todo List web application built with [Laravel](https://laravel.com/).
 ## Testing
 
 Run automated tests:
+
 ```bash
 php artisan test
 ```
 
 ## Contributing
 
-Pull requests are welcome. Please open an issue to discuss changes.
+Pull requests are welcome. Please open an issue to discuss changes or improvements before submitting a PR.
 
 ## License
 
-[MIT License](LICENSE)
+This project is licensed under the [MIT License](LICENSE).
 
 ## Resources
 
